@@ -1,0 +1,6 @@
+- hosts: server
+  tasks:
+  - name: install app
+    yum:
+     name: nginx	
+     state: present

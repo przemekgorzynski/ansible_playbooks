@@ -1,0 +1,7 @@
+- hosts: 10.10.10.1
+  tasks:
+  - name: change service status
+    service:
+      name: nfs
+      state: started
+#reloaded, restarted, started, stopped
