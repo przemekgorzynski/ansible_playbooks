@@ -1,0 +1,45 @@
+# 1. Stop the web services on web server nodes - service httpd stop
+# 2. Shutdown the database services on db server nodes - service mysql stop
+# 3. Restart all servers (web and db) at once - /sbin/shutdown -r
+# 4. Start the database services on db server nodes - service mysql start
+# 5. Start the web services on web server nodes - service httpd start
+
+-
+  name: stop httpd service
+  hosts: web_nodes
+  tasks:
+    -
+     name: stop httpd service
+     command: service httpd stop
+     
+-
+  name: stop db service on db_nodes
+  hosts: db_nodes
+  tasks:
+    -
+     name: stop db service
+     command: service mysql stop
+     
+-
+  name: restart servers
+  hosts: all_nodes
+  tasks:
+    -
+     name: restart servers
+     command: /sbin/shutdown -r
+    
+-
+  name: start mysql service
+  hosts: db_nodes
+  tasks:
+    -
+     name: start mysql service
+     command: service mysql start
+     
+-
+  name: start httpd service
+  hosts: web_nodes
+  tasks:
+    -
+     name: start hpptd service
+     command: service httpd start
