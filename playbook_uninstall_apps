@@ -18,5 +18,5 @@
     -
       yum:
         name: "{{ item }}"
-        state: present
+        state: absent
       with_items: "{{ packages }}"
