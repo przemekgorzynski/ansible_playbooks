@@ -1,0 +1,22 @@
+#-
+# name: Uninstall services
+# hosts: clients
+# tasks:
+#   -
+#     yum: 
+#       services: qemu
+#       state: absent
+
+-
+  name: Uninstall required packages
+  hosts: client
+  vars:
+    packages:
+        - httpd
+
+  tasks:
+    -
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ packages }}"
