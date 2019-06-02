@@ -1,2 +1,24 @@
 ---
 # tasks file for python
+#
+  - name: Install all required dependencies
+    yum:
+      name: "epel-release"
+      state: present
+      name: "python"
+      state: present
+      name: "python-devel"
+      state: present
+
+  - name: Install pip
+    yum:
+      name: "python-pip"
+      state: present
+
+  - name: install python libraries
+    pip:
+      name: "flask"
+      state: present
+      name: "flask-mysql"
+      state: present
+

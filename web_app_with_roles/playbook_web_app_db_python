@@ -1,0 +1,8 @@
+-
+ name: Deploy a web application
+ hosts: host1
+ roles:
+   - preconfig
+   - python
+   - mysql
+   - flask

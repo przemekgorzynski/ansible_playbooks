@@ -1,0 +1,21 @@
+---
+# tasks file for preconfig
+#
+  - name: Check Connectivity
+    ping:
+
+  - name: Set firewall service to enable traffic
+    firewalld:
+       port: 5000
+       state: enabled
+       permanent: yes
+    firewalld:
+       service: http
+       state: enabled
+       permanent: yes
+
+  - name: Remove MariaDB
+    yum:
+      name: "mariadb*"
+      state: absent
+
