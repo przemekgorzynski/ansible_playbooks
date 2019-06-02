@@ -3,7 +3,7 @@
 #
   - name: Copy source code
     copy:
-      src: app.py
+      src: /web_app_with_roles/app.py
       dest: /opt/app.py
 
   - name: Start web server
