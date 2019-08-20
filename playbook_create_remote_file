@@ -1,9 +1,9 @@
-- hosts: server
+- hosts: hadoop_server
   tasks:
   - name: Copy file to a remote server
     copy:
      content:  "Content parameter example."    
-     dest: /home/przemek/hello2.txt
+     dest: /home/hadoop/hello2.txt
 #  - name: delete file
 #    file:  
 #      path: /home/przemek/hello2.txt
