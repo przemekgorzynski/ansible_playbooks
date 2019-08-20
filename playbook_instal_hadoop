@@ -1,0 +1,15 @@
+
+ - hosts: hadoop_server
+   tasks:
+   - name: Download Hadoop package
+     get_url: 
+      url: https://archive.apache.org/dist/hadoop/core/hadoop-2.7.3/hadoop-2.7.3.tar.gz 
+      dest: /home/hadoop/
+
+   - name: Extract hadoop package
+     command: "tar -xvf /home/hadoop/hadoop-2.7.3.tar.gz"
+
+   - name: Delete Hadoop tar package
+     file: 
+      path: /home/hadoop/hadoop-2.7.3.tar.gz
+      state: absent 
