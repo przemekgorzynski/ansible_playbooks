@@ -30,4 +30,71 @@
        export HADOOP_INSTALL=$HADOOP_HOME
 
    - name: Applying changes in bashrc file
-     command: "touch $HOME/.bashrc" 
+     file:
+      path: /home/hadoop/.bashrc
+      state: touch
+     #command: "touch $HOME/.bashrc"
+
+   - name: Configuring core-site.xml of Hadoop
+     blockinfile: 
+      dest: /home/hadoop/hadoop-2.7.3/etc/hadoop/core-site.xml
+      block: | 
+       <property>
+        <name>fs.default.name</name>
+        <value>hdfs://localhost:9000</value> 
+       </property>
+      insertafter: "^<configuration>"
+      backup: yes
+
+   - name: Configuring hdfs-site.xmf of Hadoop
+     blockinfile:
+      dest: /home/hadoop/hadoop-2.7.3/etc/hadoop/hdfs-site.xml
+      block: |
+       <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+       </property>
+    
+       <property>
+        <name>dfs.name.dir</name>
+        <value>file:///home/hadoop/hadoopinfra/hdfs/namenode </value>
+       </property>
+    
+       <property>
+        <name>dfs.data.dir</name> 
+        <value>file:///home/hadoop/hadoopinfra/hdfs/datanode </value> 
+       </property>
+      insertbefore: "</configuration>"
+      backup: yes
+
+   - name: Cleaning out useless comments from yarn-site.sxm file 
+     lineinfile:
+      path: /home/hadoop/hadoop-2.7.3/etc/hadoop/yarn-site.xml
+      regexp: "<!-- Site specific YARN configuration properties -->"
+      state: absent
+      backup: yes
+
+   - name: configuring yarn-site.xml of Hadoop
+     blockinfile:
+      dest: /home/hadoop/hadoop-2.7.3/etc/hadoop/yarn-site.xml
+      block: |
+       <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value> 
+       </property>
+      insertafter: "<configuration>"
+      backup: yes
+  
+   - name: Creating mapred-site.xml file
+     command: "cp $HOME/hadoop-2.7.3/etc/hadoop/mapred-site.xml.template $HOME/hadoop-2.7.3/etc/hadoop/mapred-site.xml"
+
+   - name: Configuring mapred-site.xml of Hadoop
+     blockinfile:
+      dest: /home/hadoop/hadoop-2.7.3/etc/hadoop/mapred-site.xml
+      block: |
+       <property> 
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+       </property>
+      insertbefore: "</configuration>"
+      backup: yes
