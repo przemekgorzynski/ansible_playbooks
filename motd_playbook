@@ -11,3 +11,10 @@
     copy:
       content: "{{ motd }}"
       dest: /etc/motd
+    notify: MOTD changed
+    when: ansible_distribution == "CentOS"
+  
+ handlers:
+  - name: MOTD changed
+    debug:
+      msg: The MOTD was changed
