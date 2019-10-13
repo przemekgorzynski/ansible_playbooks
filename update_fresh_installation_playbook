@@ -1,0 +1,19 @@
+---
+
+ - hosts: target
+   user: przemek
+
+   tasks:
+    - name: update sudo
+      yum:
+       name: '*'
+       state: latest
+      notify: Update completed
+
+
+   handlers:
+    - name: Update completed
+      debug:
+       msg: update completed
+
+...
