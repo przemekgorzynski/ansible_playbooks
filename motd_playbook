@@ -1,4 +1,4 @@
--
+---
  hosts: hadoop
  user: root
  gather_facts: false
@@ -18,3 +18,4 @@
   - name: MOTD changed
     debug:
       msg: The MOTD was changed
+...
