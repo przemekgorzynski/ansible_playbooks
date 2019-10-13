@@ -6,3 +6,4 @@ ansible hadoop -m copy -a 'src=/tmp/x dest=/tmp/x'  #copy files from local host 
 ansible all -m command -a 'hostname'  #run command module which allows to run command - hostname in this case
 ansible hadoop -m file -a 'path=/tmp/x state=absent' #removes file /tmp/x from hadoop node
 ansible hadoop -m fetch -a 'src=/tmp/test_modules dest=/tmp/test_modules' #fetch files from remote hadoop host
+ansible-playbook playbook_motd -e 'motd=welcome to centos7n'  #giving motd variable value from cmd, variable must be in playbook
