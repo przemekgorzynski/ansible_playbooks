@@ -1,0 +1,13 @@
+-
+ hosts: hadoop
+ user: root
+ gather_facts: false
+ 
+
+ vars:
+   motd: "Welcome to Centos Linux - centos7\n"
+ tasks:
+  - name: configure MOTD (message of the day)
+    copy:
+      content: "{{ motd }}"
+      dest: /etc/motd
