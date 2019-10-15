@@ -1,0 +1,16 @@
+---
+
+ -  hosts: target
+    gather_facts: false
+
+#variables
+    vars_prompt:
+      - name: username
+
+    tasks:
+      - name: print username
+        debug:
+          msg: "{{ username }}"
+
+...
+
