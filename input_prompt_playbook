@@ -6,6 +6,7 @@
 #variables
     vars_prompt:
       - name: username
+        private: false
 
     tasks:
       - name: print username
