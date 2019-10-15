@@ -1,0 +1,15 @@
+---
+
+ -  hosts: target
+    gather_facts: true
+
+
+    tasks:
+      - name: print hostvars with ansible and collect port etc.
+        debug:
+          msg: "{{ hostvars[ansible_hostname].ansible_port | default ('100') }}"  
+
+# deafult means if first query will not give an output
+# hostvars value is taken from hosts file
+...
+
