@@ -7,3 +7,20 @@ ansible all -m command -a 'hostname'  #run command module which allows to run co
 ansible hadoop -m file -a 'path=/tmp/x state=absent' #removes file /tmp/x from hadoop node
 ansible hadoop -m fetch -a 'src=/tmp/test_modules dest=/tmp/test_modules' #fetch files from remote hadoop host
 ansible-playbook playbook_motd -e 'motd=welcome to centos7n'  #giving motd variable value from cmd, variable must be in playbook
+ansible target -m setup -a 'gather_subset=network,!all,!min'  # excluded from search all and min !=excude
+ansible target -m setup -a 'filter=ansible_memfree_mb'   #filer paramater
+ansible target -m setup -a 'filter=*ipv4*'        #filter with wildmask
+
+
+
+
+=====================================================================================================================
+/etc/ansible/facts.d   - we can create new facts which will be collected while running setup module
+e.g.
+
+#!/bin/bash
+echo [date]
+echo date=`date`
+
+date will popout in setup module
+======================================================================================================================
