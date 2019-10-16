@@ -16,11 +16,15 @@ ansible target -m setup -a 'filter=*ipv4*'        #filter with wildmask
 
 =====================================================================================================================
 /etc/ansible/facts.d   - we can create new custom facts which will be collected while running setup module
-e.g.
+e.g. create file date1.fact as below
 
 #!/bin/bash
 echo [date]
 echo date=`date`
 
-date will popout in setup module
+date will popout in setup module. If we don't have sudo access we can create fact file in another destoination and ther provide
+task in playbook:
+- name: reload facts
+  setup:
+    fact_path: /path_to-fact_file
 ======================================================================================================================
