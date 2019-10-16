@@ -1,0 +1,8 @@
+[control]
+controller
+
+[target_host]
+target
+
+[control:vars]
+ansible_connection=local
