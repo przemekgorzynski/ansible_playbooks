@@ -15,7 +15,7 @@ ansible target -m setup -a 'filter=*ipv4*'        #filter with wildmask
 
 
 =====================================================================================================================
-/etc/ansible/facts.d   - we can create new facts which will be collected while running setup module
+/etc/ansible/facts.d   - we can create new custom facts which will be collected while running setup module
 e.g.
 
 #!/bin/bash
