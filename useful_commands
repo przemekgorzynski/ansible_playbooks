@@ -10,6 +10,7 @@ ansible-playbook playbook_motd -e 'motd=welcome to centos7n'  #giving motd varia
 ansible target -m setup -a 'gather_subset=network,!all,!min'  # excluded from search all and min !=excude
 ansible target -m setup -a 'filter=ansible_memfree_mb'   #filer paramater
 ansible target -m setup -a 'filter=*ipv4*'        #filter with wildmask
+ansible target -m file -a 'path=/tmp/x state=directory'  #create directory on target node
 
 
 
