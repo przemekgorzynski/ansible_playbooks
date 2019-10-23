@@ -1,0 +1,12 @@
+[control]
+controller
+
+[centos]
+target
+
+[ubuntu]
+ubuntu1
+
+[linux:children]
+centos
+#ubuntu
