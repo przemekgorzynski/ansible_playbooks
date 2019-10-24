@@ -1,0 +1,70 @@
+# YAML documents begin with the document separator
+---
+
+-
+
+  hosts: linux
+
+  vars:
+    nazwisko: Nowak
+
+
+# Creating users as sublist - eg. Few people have the same surname
+
+  tasks:
+    - name: user create
+      user:
+        name: "{{ item.1 }}"
+        comment: "{{ item.1 | title }}  {{ item.0.surname }}"   # title - jinja2 filter which makes 1 letter capital
+      with_subelements:
+        -
+         - surname: Nowak
+           members:
+            - Jan
+            - Tomek
+         - surname: Kowalski
+           members:
+            - Marek
+            - Darek
+        - members                   # this is key to follow to find subelements
+
+    - name: create user directory
+      file:
+        dest: "/home/{{ item.0 }}/{{ item.1 }}"
+        owner: "{{ item.0 }}"
+        group: "{{ item.0 }}"
+        state: directory
+      with_nested:                     # for each user will create each directory
+        - [ Jan, Tomek, Darek, Marek]
+        - [ photos, movies, documents]
+#     with_together:                    # for each user will create 1 dir - james-tech, hayley-psychology etc.
+#        - [ james, hayley, lily, anwen, ana, abhishek, sara ]
+#        - [ tech, psychology, dancing, smiling, japanese, coffee, music ]
+
+
+
+
+
+# Creating users as dictionary
+#  tasks:
+#    - name: user create
+#      user:
+#        name: "{{ item.key }}"
+#        comment: "{{ item.value.full_name }}"
+#        state: absent                            # this removes users
+#      with_dict:
+#        jan:
+#          full_name: Jan "{{ nazwisko }}"
+#        janek:
+#          full_name: Janek "{{ nazwisko }}"
+
+
+# Creating users as list
+# tasks:
+#    - name: user create
+#      user:
+#        name: "{{ item }}"
+#      with_items:
+#        - user1
+#        - user2
+...
