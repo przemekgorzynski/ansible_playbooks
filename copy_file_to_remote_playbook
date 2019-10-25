@@ -1,6 +1,0 @@
-- hosts: server
-  tasks:
-  - name: Copy file to a remote server
-    copy:
-     src: /etc/ansible/file_to_copy.txt
-     dest: /home/przemek
