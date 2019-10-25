@@ -1,0 +1,18 @@
+---
+
+ - hosts: target
+
+
+   tasks:
+   - name: testing if statement
+     debug:
+       msg: >
+            Ansible jinja2 if test:
+            {% if ansible_hostname == "target" -%}
+                 This is Centos target
+            {% elif ansible_hostname != "target" -%}
+                 This is not Centos target
+            {% endif %}
+
+# sign - means new line
+...
