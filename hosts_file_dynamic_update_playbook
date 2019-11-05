@@ -1,0 +1,21 @@
+---
+
+-
+
+  hosts: linux
+
+  tasks:
+
+    - name: Install DNS python
+      command: "pip install dnspython"
+      delegate_to: target
+
+    - name: Add dynamic dns rule
+      command: "/usr/local/bin/hostsman -i dynamic_{{ ansible_hostname }}:{{ ansible_default_ipv4.address }}"
+      delegate_to: target  #will add above entries to target etc/hosts 
+
+    - name: Check DNS entries for all hosts
+      debug: 
+        msg: "The IPv4 address for dynamic_{{ item }} is {{ lookup('dig', 'dynamic_{{ item }}') }}"
+      with_items: "{{ play_hosts }}"
+...
