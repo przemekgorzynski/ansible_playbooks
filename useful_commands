@@ -12,6 +12,16 @@ ansible target -m setup -a 'filter=ansible_memfree_mb'   #filer paramater
 ansible target -m setup -a 'filter=*ipv4*'        #filter with wildmask
 ansible target -m file -a 'path=/tmp/x state=directory'  #create directory on target node
 
+======VAULT=======
+ansible-vault encrypt_string --ask-vault-pass --name 'ansible_become_pass' 'password'   # encrypting password for ansible_become_pass which is password
+ansible-vault encrypt_string --vault-id vault-name@propmt --name 'ansible_become_pass' 'password'   # encrypting password for ansible_become_pass which is password, providing vault name in case of multiple vaults, prompt for password
+ansible-vault --ask-vault-pass encrypt file-name    #encrypts file 
+ansible-vault --ask-vault-pass decrypt file-name    #decrypt file file 
+ansible-vault --ask-vault-pass rekey file-name      #set new password for vault for file
+ansible-vault --vault-id file_with_pass view encrypted_file  #vie wdecrypted file with pass stored in file
+ansible-vault --vault-id @prompt view encrypted_file  #vie wdecrypted file with pass promted from user
+ansible-vault --vault-id vars@prompt encrypt external_vault_vars.yml  #encrypt file with vault named vars - in case more vaults will be needed
+
 
 
 
