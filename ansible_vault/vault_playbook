@@ -1,0 +1,15 @@
+---
+-
+
+  hosts: linux
+
+  vars_files:
+     - external_vault_vars.yml
+
+  tasks:
+
+    - name: Show external_vault_var
+      debug:
+        var: external_vault_var
+
+...
