@@ -1,5 +1,5 @@
 #host1 ansible_host=192.168.206.11 ansible_connecion=ssh ansible_user=przemek ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa ansible_sudo=yes ansible_become=yes
-target ansible_host=192.168.141.11 ansible_connection=ssh ansible_user=root ansible_ssh_private_key_file=/root/.ssh/id_rsa
+target ansible_host=192.168.141.11 ansible_connection=ssh ansible_user=root ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa
 controller ansible_host=192.168.141.10 ansible_connection=ssh ansible_user=root ansible_ssh_private_key_file=/root/.ssh/id_rsa
 
 #host1 ansible_host=192.168.0.251 ansible_user=przemek ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa ansible_sudo=yes ansible_become=yes
@@ -10,9 +10,9 @@ controller
 [linux]
 target
 
-[servers:vars]
+[linux:vars]
 ansible_port=22
-ansible_become=yes
+ansible_become=no
 ansible_sudo=no
 
 #other usefull inventory parameters
