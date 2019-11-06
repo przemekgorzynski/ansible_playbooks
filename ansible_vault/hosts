@@ -1,0 +1,11 @@
+[control]
+controller
+
+[centos]
+target
+
+[linux:children]
+centos
+
+[docker]
+docker-do ansible_host=46.101.121.26
