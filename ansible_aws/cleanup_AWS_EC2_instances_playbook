@@ -1,0 +1,46 @@
+---
+
+-
+
+  # Target: where our play will run and options it will run with
+ 
+  hosts: tag_Name_Ansible
+  vars:
+   ec2_region: eu-west-2
+
+  tasks:
+    - name: Refresh inventory to ensure new instances exist in inventory
+      meta: refresh_inventory
+
+    - name: Remove tagged EC2 instances from security group by setting an empty group
+      ec2:
+        state: running
+        region: "{{ ec2_region }}"
+        instance_ids: "{{ ec2_id }}"
+        group_id: ""
+      delegate_to: localhost
+      
+    - name: Terminate EC2 instances
+      ec2:
+        state: absent
+        region: "{{ ec2_region }}"
+        instance_ids: "{{ ec2_id }}"
+        wait: true
+      delegate_to: localhost
+
+- 
+
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  
+  tasks:
+    - name: Remove ansible security group
+      ec2_group:
+        name: ansible
+        region: eu-west-2
+        state: absent
+
+...
+
+#eu-west-2
