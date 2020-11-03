@@ -1,0 +1,16 @@
+- hosts: host1
+  tasks:
+  - name: create user
+    user:
+      name: "{{ item.name }}"
+      state: "{{ item.state }}"
+    loop:
+      - { name: 'adam', state: 'present', group: 'adam' }
+      - { name: 'user1', state: 'present', group: 'adam' }
+
+  - name: Create a 2048-bit SSH key for user adam
+    user:
+      name: adam
+      generate_ssh_key: yes
+      ssh_key_bits: 2048
+      ssh_key_file: .ssh/id_rsa

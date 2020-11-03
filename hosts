@@ -2,8 +2,24 @@
 target ansible_host=192.168.141.11 ansible_connection=ssh ansible_user=root ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa
 controller ansible_host=192.168.141.10 ansible_connection=ssh ansible_user=root ansible_ssh_private_key_file=/root/.ssh/id_rsa
 
-#host1 ansible_host=192.168.0.251 ansible_user=przemek ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa ansible_sudo=yes ansible_become=yes
-#host2 ansible_host=192.168.1.252 ansible_user=przemek ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa ansible_sudo=yes ansible_become=yes
+#VAGRANT HOSTS
+host1 ansible_host=192.168.60.11 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa
+host2 ansible_host=192.168.60.12 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa
+host3 ansible_host=192.168.60.13 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa
+
+host10 ansible_host=192.168.60.21 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa
+host11 ansible_host=192.168.60.22 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa
+host12 ansible_host=192.168.60.23 ansible_connecion=ssh ansible_user=root ansible_ssh_private_key_file=/home/przemek/.ssh/id_rsa
+
+
+[linux]
+host1
+host2
+host3
+host10
+host11
+host12
+
 [control]
 controller
 
@@ -20,14 +36,10 @@ ansible_sudo=no
 #ansible_port
 #ansible_connection
 
-
-#[web_hosts]
-#host1
-#
-#[db_hosts]
-#host2
-#
-#[all_hosts:children]
-#web_hosts
-#db_hosts
-
+[vagrant]
+host1
+host2
+host3
+host10
+host11
+host12
