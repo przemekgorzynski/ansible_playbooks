@@ -1,0 +1,10 @@
+- hosts: host1
+  tasks:
+  - name: overwrite authorized_keys with template
+    template:
+      src: templates/authorized_keys.j2
+      dest: /home/adam/.ssh/authorized_keys
+      owner: adam
+      group: adam
+      mode: '0644'
+      force: yes
